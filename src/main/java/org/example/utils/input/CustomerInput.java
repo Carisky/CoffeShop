@@ -1,12 +1,9 @@
 package org.example.utils.input;
 
 import org.example.models.Customer.Customer;
-import org.example.models.MenuItem.MenuItem;
 
 import java.math.BigDecimal;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.sql.Date;
 import java.util.Scanner;
 
 public class CustomerInput {
@@ -35,14 +32,8 @@ public class CustomerInput {
 
         System.out.println("Enter Birth Date (format: yyyy-MM-dd):");
         String inputDateStr = scanner.nextLine();
-
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        try {
-            Date birthDate = dateFormat.parse(inputDateStr);
-            customer.setBirthDate(birthDate);
-        } catch (ParseException e) {
-            System.out.println("Invalid date format. Please enter a date in the format yyyy-MM-dd.");
-        }
+        Date birthDate = Date.valueOf(inputDateStr);
+        customer.setBirthDate(birthDate);
 
         return customer;
     }

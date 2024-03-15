@@ -2,22 +2,18 @@ package org.example.Menu;
 
 import org.example.models.MenuItem.MenuItemDAO;
 import org.example.utils.input.MenuItemInput;
-import org.jline.reader.LineReader;
-import org.jline.reader.LineReaderBuilder;
-import org.jline.terminal.Terminal;
-import org.jline.terminal.TerminalBuilder;
 
-import java.io.IOException;
+import java.util.Scanner;
 
 public class MenuItemCLI {
     public static void RUN() {
-        try {
-            Terminal terminal = TerminalBuilder.builder().build();
-            LineReader lineReader = LineReaderBuilder.builder().terminal(terminal).build();
+
+            Scanner scanner = new Scanner(System.in);
             MenuItemDAO DAO = new MenuItemDAO();
 
             while (true) {
-                String line = lineReader.readLine("Enter your command for MenuItemCLI: ");
+                System.out.println("Enter your command: ");
+                String line = scanner.nextLine();
 
                 if ("exit".equalsIgnoreCase(line.trim())) {
                     break;
@@ -26,10 +22,5 @@ public class MenuItemCLI {
                     DAO.create(MenuItemInput.create());
                 }
             }
-
-            terminal.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 }

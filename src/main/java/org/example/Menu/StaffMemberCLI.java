@@ -1,27 +1,18 @@
 package org.example.Menu;
 
-import org.example.models.MenuItem.MenuItemDAO;
 import org.example.models.StaffMember.StaffMemberDAO;
-import org.example.utils.input.MenuItemInput;
 import org.example.utils.input.StaffMemberInput;
-import org.jline.reader.LineReader;
-import org.jline.reader.LineReaderBuilder;
-import org.jline.terminal.Terminal;
-import org.jline.terminal.TerminalBuilder;
-
-import java.io.IOException;
-
+import java.util.Scanner;
 public class StaffMemberCLI {
     public static void RUN() {
-        try {
             // Create a terminal
-            Terminal terminal = TerminalBuilder.builder().build();
-            LineReader lineReader = LineReaderBuilder.builder().terminal(terminal).build();
+            Scanner scanner = new Scanner(System.in);
             StaffMemberDAO DAO = new StaffMemberDAO();
 
             // Main loop for reading input
             while (true) {
-                String line = lineReader.readLine("Enter your command for StaffMemberCLI: ");
+                System.out.println("Enter your command: ");
+                String line = scanner.nextLine();
 
                 // Check for exit command
                 if ("exit".equalsIgnoreCase(line.trim())) {
@@ -35,10 +26,5 @@ public class StaffMemberCLI {
                 }
             }
 
-            // Close the terminal
-            terminal.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 }

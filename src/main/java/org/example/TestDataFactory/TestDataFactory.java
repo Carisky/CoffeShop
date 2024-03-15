@@ -140,11 +140,11 @@ public class TestDataFactory {
         return positions[random.nextInt(positions.length)];
     }
 
-    private static Date generateRandomBirthDate() {
+    private static java.sql.Date generateRandomBirthDate() {
         long millisInYear = 365L * 24 * 60 * 60 * 1000;
         long randomMillisOffset = (long) (random.nextDouble() * millisInYear * 30); // Random date within the last 30 years
         long currentTimeMillis = System.currentTimeMillis();
-        return new Date(currentTimeMillis - randomMillisOffset);
+        return new java.sql.Date(currentTimeMillis - randomMillisOffset);
     }
 
     private static BigDecimal generateRandomDiscount() {

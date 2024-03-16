@@ -22,7 +22,7 @@ public class OrderDAO implements ICRUD<Order> {
                 statement.setInt(1, order.getCustomerId());
                 statement.setInt(2, order.getStaffId());
                 statement.setInt(3, order.getMenuId());
-                statement.setDate(4, new java.sql.Date(order.getOrderDate().getTime()));
+                statement.setTimestamp(4, order.getOrderDate());
 
                 statement.executeUpdate();
 
@@ -64,7 +64,7 @@ public class OrderDAO implements ICRUD<Order> {
                 statement.setInt(1, order.getCustomerId());
                 statement.setInt(2, order.getStaffId());
                 statement.setInt(3, order.getMenuId());
-                statement.setDate(4, new java.sql.Date(order.getOrderDate().getTime()));
+                statement.setTimestamp(4, order.getOrderDate());
                 statement.setInt(5, order.getId());
 
                 statement.executeUpdate();
@@ -113,7 +113,7 @@ public class OrderDAO implements ICRUD<Order> {
         order.setCustomerId(resultSet.getInt("customer_id"));
         order.setStaffId(resultSet.getInt("staff_id"));
         order.setMenuId(resultSet.getInt("menu_id"));
-        order.setOrderDate(resultSet.getDate("order_date"));
+        order.setOrderDate(resultSet.getTimestamp("order_date"));
         return order;
     }
 }

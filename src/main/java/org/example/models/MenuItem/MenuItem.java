@@ -1,13 +1,16 @@
 package org.example.models.MenuItem;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import java.math.BigDecimal;
 
 
 @Getter
 @Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@ToString
+@EqualsAndHashCode
 public class MenuItem {
     private int id;
     private String Type;

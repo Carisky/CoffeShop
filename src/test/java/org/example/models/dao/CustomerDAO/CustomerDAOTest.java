@@ -12,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class CustomerDAOTest {
     private CustomerDAO customerDAO;
-    private database DB = new database();
+    private final database DB = new database();
     @BeforeEach
     void setUp() {
         customerDAO = new CustomerDAO();
@@ -24,12 +24,9 @@ public class CustomerDAOTest {
     }
 
     @Test
-    void read_ShouldReturnCutomer_WhenCalled() {
+    void read_ShouldReturnCustomer_WhenCalled() {
         Customer expected = new Customer(1,"John Doe", Date.valueOf("1990-01-01"), "123456789", "john@example.com", new BigDecimal("0.050"));
         Customer actual = customerDAO.read(1);
-
-        System.out.println("expected "+expected);
-        System.out.println("actual "+actual);
 
         assertEquals(expected,actual);
     }
@@ -41,12 +38,7 @@ public class CustomerDAOTest {
 
         Customer actual = customerDAO.read(4);
 
-        System.out.println("expected "+expected);
-        System.out.println("actual "+actual);
-
         assertEquals(expected,actual);
-
-
     }
 
     @Test
@@ -56,11 +48,7 @@ public class CustomerDAOTest {
 
         Customer actual = customerDAO.read(3);
 
-        System.out.println("expected "+expected);
-        System.out.println("actual "+actual);
-
         assertEquals(expected,actual);
-
     }
 
     @Test
@@ -70,11 +58,7 @@ public class CustomerDAOTest {
 
         Customer actual = customerDAO.read(1);
 
-        System.out.println("expected "+expected);
-        System.out.println("actual "+actual);
-
         assertNull(actual);
-
     }
 
     @Test

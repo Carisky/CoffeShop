@@ -39,6 +39,6 @@ CREATE TABLE coffeeshop.orders (
 id SERIAL PRIMARY KEY,
 customer_id INT REFERENCES coffeeshop.customers(id) ON DELETE CASCADE,
 staff_id INT REFERENCES coffeeshop.staff(id) ON DELETE CASCADE,
-menu_id INT REFERENCES coffeeshop.menu(id),
+menu_id INT REFERENCES coffeeshop.menu(id) ON DELETE CASCADE,
 order_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );

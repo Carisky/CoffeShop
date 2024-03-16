@@ -18,7 +18,8 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
-import java.util.Date;
+import java.sql.Date;
+import java.sql.Timestamp;
 import java.util.Random;
 
 public class TestDataFactory {
@@ -90,14 +91,14 @@ public class TestDataFactory {
         }
     }
 
-    private static Date generateRandomOrderDate() {
+    private static Timestamp generateRandomOrderDate() {
         long millisInDay = 24 * 60 * 60 * 1000;
         long randomMillisOffset = (long) (random.nextDouble() * millisInDay * 365); // Random date within the last year
         long currentTimeMillis = System.currentTimeMillis();
         LocalDate randomLocalDate = LocalDate.ofEpochDay((currentTimeMillis - randomMillisOffset) / millisInDay);
 
         ZonedDateTime zonedDateTime = randomLocalDate.atStartOfDay(ZoneId.systemDefault());
-        return new Date(zonedDateTime.toEpochSecond() * 1000);
+        return new Timestamp(zonedDateTime.toEpochSecond() * 1000);
     }
 
 

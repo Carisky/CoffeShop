@@ -2,6 +2,7 @@ package org.example.utils.input;
 
 import org.example.models.MenuItem.MenuItem;
 import org.example.models.StaffMember.StaffMember;
+import org.example.utils.output.ColorConsole;
 
 import java.math.BigDecimal;
 import java.util.Scanner;
@@ -12,15 +13,15 @@ public class StaffMemberInput {
         Scanner scanner = new Scanner(System.in);
         StaffMember member = new StaffMember();
 
-        System.out.println("Enter Name");
+        ColorConsole.purple("Enter Name");
         member.setFullName(scanner.nextLine());
 
         member.setPosition(position);
 
-        System.out.println("Enter Phone");
+        ColorConsole.purple("Enter Phone");
         member.setContactPhone(scanner.nextLine());
 
-        System.out.println("Enter Email");
+        ColorConsole.purple("Enter Email");
         member.setContactEmail(scanner.nextLine());
 
         return member;

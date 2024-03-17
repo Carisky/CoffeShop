@@ -2,6 +2,7 @@ package org.example.Menu;
 
 import org.example.models.MenuItem.MenuItemDAO;
 import org.example.utils.input.MenuItemInput;
+import org.example.utils.output.ColorConsole;
 
 import java.util.Scanner;
 
@@ -12,7 +13,7 @@ public class MenuItemCLI {
             MenuItemDAO DAO = new MenuItemDAO();
 
             while (true) {
-                System.out.println("Enter your command: ");
+                ColorConsole.cyan("Enter your command: ");
                 String line = scanner.nextLine();
 
                 if ("exit".equalsIgnoreCase(line.trim())) {

@@ -1,10 +1,12 @@
 package org.example.models.StaffMember;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
-@Setter
 @Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@EqualsAndHashCode
 public class StaffMember {
     private int id;
     private String fullName;

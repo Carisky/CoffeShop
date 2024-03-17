@@ -1,12 +1,14 @@
 package org.example.models.Schedule;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import java.sql.Time;
 
 @Getter
 @Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@EqualsAndHashCode
 public class Schedule {
     private int id;
     private int staffId;

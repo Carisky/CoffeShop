@@ -2,6 +2,8 @@ package org.example.Menu;
 
 import org.example.models.StaffMember.StaffMemberDAO;
 import org.example.utils.input.StaffMemberInput;
+import org.example.utils.output.ColorConsole;
+
 import java.util.Scanner;
 public class StaffMemberCLI {
     public static void RUN() {
@@ -11,7 +13,7 @@ public class StaffMemberCLI {
 
             // Main loop for reading input
             while (true) {
-                System.out.println("Enter your command: ");
+                ColorConsole.cyan("Enter your command: ");
                 String line = scanner.nextLine();
 
                 // Check for exit command

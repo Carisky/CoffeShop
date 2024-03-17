@@ -1,14 +1,16 @@
 package org.example.models.dao.OrderDAO;
 
 import org.example.database.database;
-
 import org.example.models.Order.Order;
 import org.example.models.Order.OrderDAO;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.math.BigDecimal;
 import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
@@ -55,7 +57,6 @@ public class OrderDAOTest {
 
     @Test
     void delete_ShouldDeleteOrderInDB_WhenCalled() {
-        Order expected = null;
         orderDAO.delete(1);
 
         Order actual = orderDAO.read(1);
@@ -64,7 +65,14 @@ public class OrderDAOTest {
     }
 
     @Test
-    void testGetAll() {
+    void getAll_ShouldReturnAllOrdersFromDB_WhenCalled() {
+        List<Order> expected = new ArrayList<>();
+        expected.add(new Order(1,1, 1, 1, Timestamp.valueOf("2024-03-15 10:00:00")));
+        expected.add(new Order(2,2, 2, 2, Timestamp.valueOf("2024-03-16 11:30:00")));
+        expected.add(new Order(3,3, 3, 3, Timestamp.valueOf("2024-03-17 12:45:00")));
 
+        List<Order> actual = new ArrayList<>(orderDAO.getAll());
+
+        assertEquals(expected,actual);
     }
 }

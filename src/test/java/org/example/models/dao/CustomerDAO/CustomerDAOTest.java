@@ -7,6 +7,8 @@ import org.junit.jupiter.api.*;
 
 import java.math.BigDecimal;
 import java.sql.Date;
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -53,7 +55,6 @@ public class CustomerDAOTest {
 
     @Test
     void delete_ShouldDeleteCustomerInDB_WhenCalled() {
-        Customer expected = null;
         customerDAO.delete(1);
 
         Customer actual = customerDAO.read(1);
@@ -62,7 +63,14 @@ public class CustomerDAOTest {
     }
 
     @Test
-    void testGetAll() {
+    void getAll_ShouldReturnAllCustomersFromDB_WhenCalled() {
+        List<Customer> expected = new ArrayList<>();
+        expected.add(new Customer(1,"John Doe", Date.valueOf("1990-01-01"), "123456789", "john@example.com", new BigDecimal("0.050")));
+        expected.add(new Customer(2,"Alice Smith", Date.valueOf("1985-05-15"), "987654321", "alice@example.com", new BigDecimal("0.100")));
+        expected.add(new Customer(3,"Bob Johnson", Date.valueOf("1978-10-20"), "456123789", "bob@example.com", new BigDecimal("0.000")));
 
+        List<Customer> actual = new ArrayList<>(customerDAO.getAll());
+
+        assertEquals(expected,actual);
     }
 }

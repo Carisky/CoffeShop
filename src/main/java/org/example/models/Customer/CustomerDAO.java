@@ -103,6 +103,25 @@ public class CustomerDAO implements ICRUD<Customer> {
         return customers;
     }
 
+    public Customer searchByFullName(String fullName) {
+        try {
+            String sql = "SELECT * FROM coffeeshop.customers WHERE full_name LIKE ?";
+            try (PreparedStatement statement = connection.prepareStatement(sql)) {
+                statement.setString(1, "%" + fullName + "%");
+                ResultSet resultSet = statement.executeQuery();
+
+                if (resultSet.next()) {
+                    return extractCustomerFromResultSet(resultSet);
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
+
     private Customer extractCustomerFromResultSet(ResultSet resultSet) throws SQLException {
         Customer customer = new Customer();
         customer.setId(resultSet.getInt("id"));

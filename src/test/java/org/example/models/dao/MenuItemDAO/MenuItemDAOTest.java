@@ -20,6 +20,7 @@ public class MenuItemDAOTest {
     private final database DB = new database();
     @BeforeEach
     void setUp() {
+        DB.REFRESH();
         menuItemDAO = new MenuItemDAO();
     }
 

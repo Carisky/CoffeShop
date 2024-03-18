@@ -20,6 +20,7 @@ public class OrderDAOTest {
     private final database DB = new database();
     @BeforeEach
     void setUp() {
+        DB.REFRESH();
         orderDAO = new OrderDAO();
     }
 

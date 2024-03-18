@@ -1,6 +1,7 @@
 package org.example.utils.input;
 
 import org.example.models.Customer.Customer;
+import org.example.models.Customer.CustomerDAO;
 import org.example.utils.output.ColorConsole;
 
 import java.math.BigDecimal;
@@ -37,5 +38,33 @@ public class CustomerInput {
         customer.setBirthDate(birthDate);
 
         return customer;
+    }
+
+    public static Customer update(){
+        Scanner scanner = new Scanner(System.in);
+        ColorConsole.purple("Enter Full Name");
+        String fullName = scanner.nextLine();
+        Customer customer = new CustomerDAO().searchByFullName(fullName);
+
+        if(customer!=null){
+            ColorConsole.purple("Enter discount");
+            double discount;
+            try {
+                discount = Double.parseDouble(scanner.nextLine());
+                customer.setDiscount(BigDecimal.valueOf(discount));
+                return customer;
+            } catch (NumberFormatException e) {
+                ColorConsole.red("Invalid price format. Please enter a valid number.");
+            }
+        }
+        return customer;
+    }
+
+
+    public static Customer searchByFullName(){
+        Scanner scanner = new Scanner(System.in);
+        ColorConsole.purple("Enter Full Name");
+        String fullName = scanner.nextLine();
+        return new CustomerDAO().searchByFullName(fullName);
     }
 }

@@ -19,6 +19,7 @@ public class ScheduleDAOTest {
     private final database DB = new database();
     @BeforeEach
     void setUp() {
+        DB.REFRESH();
         scheduleDAO = new ScheduleDAO();
     }
 

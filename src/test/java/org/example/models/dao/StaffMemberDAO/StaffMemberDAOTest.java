@@ -18,6 +18,7 @@ public class StaffMemberDAOTest {
     private final database DB = new database();
     @BeforeEach
     void setUp() {
+        DB.REFRESH();
         staffMemberDAO = new StaffMemberDAO();
     }
 

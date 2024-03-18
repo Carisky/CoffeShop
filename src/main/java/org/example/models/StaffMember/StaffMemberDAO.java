@@ -107,6 +107,46 @@ public class StaffMemberDAO implements ICRUD<StaffMember> {
         return staffMembers;
     }
 
+    public List<StaffMember> searchByFullName(String fullName) {
+        List<StaffMember> staffMembers = new ArrayList<>();
+
+        try {
+            String sql = "SELECT * FROM coffeeshop.staff WHERE full_name LIKE ?";
+            try (PreparedStatement statement = connection.prepareStatement(sql)) {
+                statement.setString(1, "%" + fullName + "%");
+                ResultSet resultSet = statement.executeQuery();
+
+                while (resultSet.next()) {
+                    staffMembers.add(extractStaffMemberFromResultSet(resultSet));
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return staffMembers;
+    }
+
+    public StaffMember searchByFullNameAndPosition(String fullName, String position) {
+        try {
+            String sql = "SELECT * FROM coffeeshop.staff WHERE full_name LIKE ? AND position = ?";
+            try (PreparedStatement statement = connection.prepareStatement(sql)) {
+                statement.setString(1, "%" + fullName + "%");
+                statement.setString(2, position);
+                ResultSet resultSet = statement.executeQuery();
+
+                if (resultSet.next()) {
+                    return extractStaffMemberFromResultSet(resultSet);
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
+
     private StaffMember extractStaffMemberFromResultSet(ResultSet resultSet) throws SQLException {
         StaffMember staffMember = new StaffMember();
         staffMember.setId(resultSet.getInt("id"));

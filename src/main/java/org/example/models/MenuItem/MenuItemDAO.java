@@ -99,6 +99,45 @@ public class MenuItemDAO implements ICRUD<MenuItem> {
         return menuItems;
     }
 
+    public List<MenuItem> searchByType(String type) {
+        List<MenuItem> menuItems = new ArrayList<>();
+
+        try {
+            String sql = "SELECT * FROM coffeeshop.menu WHERE type = ?";
+            try (PreparedStatement statement = connection.prepareStatement(sql)) {
+                statement.setString(1, type);
+                ResultSet resultSet = statement.executeQuery();
+
+                while (resultSet.next()) {
+                    menuItems.add(extractMenuItemFromResultSet(resultSet));
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return menuItems;
+    }
+
+    public MenuItem searchByName(String name) {
+        try {
+            String sql = "SELECT * FROM coffeeshop.menu WHERE name = ?";
+            try (PreparedStatement statement = connection.prepareStatement(sql)) {
+                statement.setString(1, name);
+                ResultSet resultSet = statement.executeQuery();
+
+                if (resultSet.next()) {
+                    return extractMenuItemFromResultSet(resultSet);
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
+
     private MenuItem extractMenuItemFromResultSet(ResultSet resultSet) throws SQLException {
         MenuItem menuItem = new MenuItem();
         menuItem.setId(resultSet.getInt("id"));
@@ -107,4 +146,6 @@ public class MenuItemDAO implements ICRUD<MenuItem> {
         menuItem.setPrice(resultSet.getBigDecimal("price"));
         return menuItem;
     }
+
+
 }

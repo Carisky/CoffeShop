@@ -9,6 +9,7 @@ import java.sql.Time;
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode
+@ToString
 public class Schedule {
     private int id;
     private int staffId;

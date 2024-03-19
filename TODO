@@ -1,0 +1,4 @@
+fix database structure
+make tests for CLI'S
+make docker container for unit/int tests with DB
+make profile in maven for tests

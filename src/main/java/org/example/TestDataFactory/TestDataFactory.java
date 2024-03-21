@@ -1,15 +1,15 @@
 package org.example.TestDataFactory;
 
 import org.example.models.Customer.Customer;
-import org.example.models.Customer.CustomerDAO;
+import org.example.DAO.CustomerDAO;
 import org.example.models.MenuItem.MenuItem;
-import org.example.models.MenuItem.MenuItemDAO;
+import org.example.DAO.MenuItemDAO;
 import org.example.models.Order.Order;
-import org.example.models.Order.OrderDAO;
+import org.example.DAO.OrderDAO;
 import org.example.models.Schedule.Schedule;
-import org.example.models.Schedule.ScheduleDAO;
+import org.example.DAO.ScheduleDAO;
 import org.example.models.StaffMember.StaffMember;
-import org.example.models.StaffMember.StaffMemberDAO;
+import org.example.DAO.StaffMemberDAO;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -18,7 +18,6 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
-import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.Random;
 

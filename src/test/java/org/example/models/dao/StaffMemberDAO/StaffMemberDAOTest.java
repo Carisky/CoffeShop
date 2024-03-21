@@ -2,7 +2,7 @@ package org.example.models.dao.StaffMemberDAO;
 
 import org.example.database.database;
 import org.example.models.StaffMember.StaffMember;
-import org.example.models.StaffMember.StaffMemberDAO;
+import org.example.DAO.StaffMemberDAO;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

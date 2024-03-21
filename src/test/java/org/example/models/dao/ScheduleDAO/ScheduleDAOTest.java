@@ -2,7 +2,7 @@ package org.example.models.dao.ScheduleDAO;
 
 import org.example.database.database;
 import org.example.models.Schedule.Schedule;
-import org.example.models.Schedule.ScheduleDAO;
+import org.example.DAO.ScheduleDAO;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

@@ -1,7 +1,7 @@
 package org.example.utils.input;
 
 import org.example.models.Customer.Customer;
-import org.example.models.Customer.CustomerDAO;
+import org.example.DAO.CustomerDAO;
 import org.example.utils.output.ColorConsole;
 
 import java.math.BigDecimal;

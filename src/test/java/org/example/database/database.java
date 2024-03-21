@@ -1,6 +1,6 @@
 package org.example.database;
 
-import org.example.Connectionfactory.ConnectionFactory;
+import org.example.DAO.Connectionfactory.ConnectionFactory;
 
 import java.io.BufferedReader;
 import java.io.FileReader;

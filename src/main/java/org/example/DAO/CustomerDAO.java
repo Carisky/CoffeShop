@@ -1,7 +1,8 @@
-package org.example.models.Customer;
+package org.example.DAO;
 
-import org.example.Connectionfactory.ConnectionFactory;
+import org.example.DAO.Connectionfactory.ConnectionFactory;
 import org.example.interfaces.ICRUD;
+import org.example.models.Customer.Customer;
 
 import java.sql.*;
 import java.util.ArrayList;

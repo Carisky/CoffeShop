@@ -1,7 +1,7 @@
 package org.example.enums.commands;
 
 import org.example.models.Customer.Customer;
-import org.example.models.Customer.CustomerDAO;
+import org.example.DAO.CustomerDAO;
 import org.example.utils.input.CustomerInput;
 import org.apache.commons.lang3.tuple.Pair;
 import org.example.utils.output.ColorConsole;

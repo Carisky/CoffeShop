@@ -2,7 +2,7 @@ package org.example.enums.commands;
 
 import org.apache.commons.lang3.tuple.Pair;
 import org.example.models.StaffMember.StaffMember;
-import org.example.models.StaffMember.StaffMemberDAO;
+import org.example.DAO.StaffMemberDAO;
 import org.example.utils.input.StaffMemberInput;
 import org.example.utils.output.ColorConsole;
 

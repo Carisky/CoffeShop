@@ -1,4 +1,4 @@
-package org.example.DatabaseConfig;
+package org.example.DAO.DatabaseConfig;
 
 import lombok.Getter;
 

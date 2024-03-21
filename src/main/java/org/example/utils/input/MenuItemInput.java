@@ -1,7 +1,7 @@
 package org.example.utils.input;
 
 import org.example.models.MenuItem.MenuItem;
-import org.example.models.MenuItem.MenuItemDAO;
+import org.example.DAO.MenuItemDAO;
 import org.example.utils.output.ColorConsole;
 
 import java.math.BigDecimal;

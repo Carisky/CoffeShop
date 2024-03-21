@@ -1,7 +1,7 @@
-package org.example.Connectionfactory;
+package org.example.DAO.Connectionfactory;
 
 import lombok.Getter;
-import org.example.DatabaseConfig.DatabaseConfig;
+import org.example.DAO.DatabaseConfig.DatabaseConfig;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

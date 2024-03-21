@@ -3,7 +3,7 @@ package org.example.models.dao.MenuItemDAO;
 
 import org.example.database.database;
 import org.example.models.MenuItem.MenuItem;
-import org.example.models.MenuItem.MenuItemDAO;
+import org.example.DAO.MenuItemDAO;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

@@ -2,12 +2,11 @@ package org.example.models.dao.OrderDAO;
 
 import org.example.database.database;
 import org.example.models.Order.Order;
-import org.example.models.Order.OrderDAO;
+import org.example.DAO.OrderDAO;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;

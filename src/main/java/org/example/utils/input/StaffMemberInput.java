@@ -1,7 +1,7 @@
 package org.example.utils.input;
 
 import org.example.models.StaffMember.StaffMember;
-import org.example.models.StaffMember.StaffMemberDAO;
+import org.example.DAO.StaffMemberDAO;
 import org.example.utils.output.ColorConsole;
 
 import java.util.Scanner;

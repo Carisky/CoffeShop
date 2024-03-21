@@ -2,7 +2,7 @@ package org.example.models.dao.CustomerDAO;
 
 import org.example.database.database;
 import org.example.models.Customer.Customer;
-import org.example.models.Customer.CustomerDAO;
+import org.example.DAO.CustomerDAO;
 import org.junit.jupiter.api.*;
 
 import java.math.BigDecimal;

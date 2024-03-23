@@ -108,6 +108,27 @@ public class OrderDAO implements ICRUD<Order> {
         return orders;
     }
 
+    public List<Order> getOrdersByDate(Date date) {
+        List<Order> orders = new ArrayList<>();
+
+        try {
+            String sql = "SELECT * FROM coffeeshop.orders WHERE DATE(order_date) = ?";
+            try (PreparedStatement statement = connection.prepareStatement(sql)) {
+                statement.setDate(1, date);
+                ResultSet resultSet = statement.executeQuery();
+
+                while (resultSet.next()) {
+                    orders.add(extractOrderFromResultSet(resultSet));
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return orders;
+    }
+
+
     private Order extractOrderFromResultSet(ResultSet resultSet) throws SQLException {
         Order order = new Order();
         order.setId(resultSet.getInt("id"));

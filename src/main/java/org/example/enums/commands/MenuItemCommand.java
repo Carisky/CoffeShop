@@ -16,6 +16,12 @@ public enum MenuItemCommand {
     CREATE("create", ()-> {
         new MenuItemDAO().create(Objects.requireNonNull(MenuItemInput.create()));
     }),
+    CREATE_COFFEE("create coffee", ()-> {
+        new MenuItemDAO().create(Objects.requireNonNull(MenuItemInput.create_coffee()));
+    }),
+    CREATE_DESSERT("create dessert", ()-> {
+        new MenuItemDAO().create(Objects.requireNonNull(MenuItemInput.create_dessert()));
+    }),
     SHOW_ALL("show all",()-> ColorConsole.cyan(new MenuItemDAO().getAll())),
     UPDATE_PRICE("update price",()->{
         MenuItemDAO DAO = new MenuItemDAO();
@@ -30,6 +36,8 @@ public enum MenuItemCommand {
             DAO.update(menuItem);
         }
     }),
+
+    UPDATE_COFFEES_BY_TYPE("update coffees type", MenuItemInput::updateByType),
     DELETE("delete",()->{
         MenuItemDAO DAO = new MenuItemDAO();
         MenuItem item = MenuItemInput.searchByName();

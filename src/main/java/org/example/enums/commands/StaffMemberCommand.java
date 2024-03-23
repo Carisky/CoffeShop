@@ -11,12 +11,8 @@ import java.util.Map;
 import java.util.function.Function;
 
 public enum StaffMemberCommand {
-    CREATE_BARISTA("create barista", ()-> {
-        new StaffMemberDAO().create(StaffMemberInput.createBarista());
-    }),
-    CREATE_CONFECTIONER("create confectioner", ()-> {
-        new StaffMemberDAO().create(StaffMemberInput.createConfectioner());
-    }),
+    CREATE_BARISTA("create barista", ()-> new StaffMemberDAO().create(StaffMemberInput.createBarista())),
+    CREATE_CONFECTIONER("create confectioner", ()-> new StaffMemberDAO().create(StaffMemberInput.createConfectioner())),
     UPDATE_CONFECTIONER("update confectioner", ()-> {
         StaffMember confectioner = StaffMemberInput.searchConfectionerByFullName();
 

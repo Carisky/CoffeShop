@@ -102,6 +102,26 @@ public class ScheduleDAO implements ICRUD<Schedule> {
         return schedules;
     }
 
+    public List<Schedule> readByStaffId(int staffId) {
+        List<Schedule> schedules = new ArrayList<>();
+
+        try {
+            String sql = "SELECT * FROM coffeeshop.schedule WHERE staff_id = ?";
+            try (PreparedStatement statement = connection.prepareStatement(sql)) {
+                statement.setInt(1, staffId);
+                ResultSet resultSet = statement.executeQuery();
+
+                while (resultSet.next()) {
+                    schedules.add(extractScheduleFromResultSet(resultSet));
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return schedules;
+    }
+
     private Schedule extractScheduleFromResultSet(ResultSet resultSet) throws SQLException {
         Schedule schedule = new Schedule();
         schedule.setId(resultSet.getInt("id"));

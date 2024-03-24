@@ -6,6 +6,7 @@ import org.example.models.Schedule.Schedule;
 import org.example.models.StaffMember.StaffMember;
 import org.example.utils.output.ColorConsole;
 
+import java.sql.Date;
 import java.sql.Time;
 import java.util.List;
 import java.util.Scanner;
@@ -152,4 +153,107 @@ public class ScheduleInput {
         return null;
 
     }
+
+    public static void deleteSchedule() {
+        ColorConsole.purple("Enter Name of Staff Member");
+        String fullName = scanner.nextLine();
+
+        List<StaffMember> members = staffMemberDAO.searchByFullName(fullName);
+
+        if (members != null && !members.isEmpty()) {
+            ColorConsole.purple("Select a Staff Member:");
+
+            for (int i = 0; i < members.size(); i++) {
+                StaffMember member = members.get(i);
+                ColorConsole.yellow((i + 1) + ". " + member.getFullName());
+            }
+
+            int choice = scanner.nextInt();
+            if (choice >= 1 && choice <= members.size()) {
+                StaffMember selectedMember = members.get(choice - 1);
+                String dayOfWeek = getDay();
+                new ScheduleDAO().deleteScheduleByStaffIdAndDay(selectedMember.getId(), dayOfWeek);
+                ColorConsole.green("Schedule for " + selectedMember.getFullName() + " on " + dayOfWeek + " has been deleted.");
+            } else {
+                ColorConsole.red("Invalid choice. Please select a valid number.");
+            }
+        } else {
+            ColorConsole.red("Member " + fullName + " Doesn't Found");
+        }
+    }
+
+    public static void deleteScheduleBetweenDates() {
+        ColorConsole.purple("Enter Name of Staff Member");
+        String fullName = scanner.nextLine();
+
+        List<StaffMember> members = staffMemberDAO.searchByFullName(fullName);
+
+        if (members != null && !members.isEmpty()) {
+            ColorConsole.purple("Select a Staff Member:");
+
+            for (int i = 0; i < members.size(); i++) {
+                StaffMember member = members.get(i);
+                ColorConsole.yellow((i + 1) + ". " + member.getFullName());
+            }
+
+            int choice = scanner.nextInt();
+            if (choice >= 1 && choice <= members.size()) {
+                StaffMember selectedMember = members.get(choice - 1);
+
+                ColorConsole.purple("Enter Start Date (YYYY-MM-DD)");
+                String startDateString = scanner.next();
+                Date startDate = Date.valueOf(startDateString);
+
+                ColorConsole.purple("Enter End Date (YYYY-MM-DD)");
+                String endDateString = scanner.next();
+                Date endDate = Date.valueOf(endDateString);
+
+                new ScheduleDAO().deleteScheduleBetweenDates(selectedMember.getId(), startDate, endDate);
+                ColorConsole.green("Schedule for " + selectedMember.getFullName() + " between " + startDate + " and " + endDate + " has been deleted.");
+            } else {
+                ColorConsole.red("Invalid choice. Please select a valid number.");
+            }
+        } else {
+            ColorConsole.red("Member " + fullName + " Doesn't Found");
+        }
+    }
+
+    public static void showScheduleByStaffIdAndDay() {
+        ColorConsole.purple("Enter Name of Staff Member");
+        String fullName = scanner.nextLine();
+
+        List<StaffMember> members = staffMemberDAO.searchByFullName(fullName);
+
+        if (members != null && !members.isEmpty()) {
+            ColorConsole.purple("Select a Staff Member:");
+
+            for (int i = 0; i < members.size(); i++) {
+                StaffMember member = members.get(i);
+                ColorConsole.yellow((i + 1) + ". " + member.getFullName());
+            }
+
+            int choice = scanner.nextInt();
+            if (choice >= 1 && choice <= members.size()) {
+                StaffMember selectedMember = members.get(choice - 1);
+
+                String dayOfWeek = getDay();
+                List<Schedule> schedules = new ScheduleDAO().readByStaffIdAndDayOfWeek(selectedMember.getId(), dayOfWeek);
+
+                if (!schedules.isEmpty()) {
+                    ColorConsole.purple("Schedule for " + selectedMember.getFullName() + " on " + dayOfWeek + ":");
+
+                    for (Schedule schedule : schedules) {
+                        ColorConsole.yellow("Start Time: " + schedule.getStartTime() + ", End Time: " + schedule.getEndTime());
+                    }
+                } else {
+                    ColorConsole.yellow("No schedule found for " + selectedMember.getFullName() + " on " + dayOfWeek);
+                }
+            } else {
+                ColorConsole.red("Invalid choice. Please select a valid number.");
+            }
+        } else {
+            ColorConsole.red("Member " + fullName + " Doesn't Found");
+        }
+    }
+
 }

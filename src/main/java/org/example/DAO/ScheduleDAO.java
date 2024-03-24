@@ -102,6 +102,36 @@ public class ScheduleDAO implements ICRUD<Schedule> {
         return schedules;
     }
 
+    public void deleteScheduleByStaffIdAndDay(int staffId, String dayOfWeek) {
+        try {
+            String sql = "DELETE FROM coffeeshop.schedule WHERE staff_id = ? AND day_of_week = ?";
+            try (PreparedStatement statement = connection.prepareStatement(sql)) {
+                statement.setInt(1, staffId);
+                statement.setString(2, dayOfWeek);
+                statement.executeUpdate();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void deleteScheduleBetweenDates(int staffId, Date startDate, Date endDate) {
+        try {
+            String sql = "DELETE FROM coffeeshop.schedule WHERE staff_id = ? AND day_of_week BETWEEN ? AND ?";
+            try (PreparedStatement statement = connection.prepareStatement(sql)) {
+                statement.setInt(1, staffId);
+                statement.setDate(2, startDate);
+                statement.setDate(3, endDate);
+                statement.executeUpdate();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+
+
     public List<Schedule> readByStaffId(int staffId) {
         List<Schedule> schedules = new ArrayList<>();
 
@@ -121,6 +151,28 @@ public class ScheduleDAO implements ICRUD<Schedule> {
 
         return schedules;
     }
+
+    public List<Schedule> readByStaffIdAndDayOfWeek(int staffId, String dayOfWeek) {
+        List<Schedule> schedules = new ArrayList<>();
+
+        try {
+            String sql = "SELECT * FROM coffeeshop.schedule WHERE staff_id = ? AND day_of_week = ?";
+            try (PreparedStatement statement = connection.prepareStatement(sql)) {
+                statement.setInt(1, staffId);
+                statement.setString(2, dayOfWeek);
+                ResultSet resultSet = statement.executeQuery();
+
+                while (resultSet.next()) {
+                    schedules.add(extractScheduleFromResultSet(resultSet));
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return schedules;
+    }
+
 
     private Schedule extractScheduleFromResultSet(ResultSet resultSet) throws SQLException {
         Schedule schedule = new Schedule();

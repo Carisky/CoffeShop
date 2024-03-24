@@ -8,7 +8,10 @@ import java.util.function.Function;
 
 public enum OrderCommand {
 
-    CREATE("update order", OrderInput::update);
+    CREATE("update order", OrderInput::update),
+    DELETE("delete", OrderInput::delete),
+    SHOW_BY_DESERT_NAME("show by desert name", OrderInput::showOrdersByDessertName),
+    DELETE_BY_DESERT_NAME("delete desert by name", OrderInput::deleteOrdersByDesertName);
 
     private final String commandName;
     private final Runnable executionFunction;

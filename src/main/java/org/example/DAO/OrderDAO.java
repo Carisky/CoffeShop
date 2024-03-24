@@ -128,6 +128,41 @@ public class OrderDAO implements ICRUD<Order> {
         return orders;
     }
 
+    public void deleteOrdersByMenuName(String menuName) {
+        try {
+            String sql = "DELETE FROM coffeeshop.orders WHERE menu_id IN (SELECT id FROM coffeeshop.menu WHERE name = ?)";
+            try (PreparedStatement statement = connection.prepareStatement(sql)) {
+                statement.setString(1, menuName);
+                statement.executeUpdate();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public List<Order> getOrdersByDessertName(String dessertName) {
+        List<Order> orders = new ArrayList<>();
+
+        try {
+            String sql = "SELECT o.* FROM coffeeshop.orders o " +
+                    "INNER JOIN coffeeshop.menu m ON o.menu_id = m.id " +
+                    "WHERE m.name = ?";
+            try (PreparedStatement statement = connection.prepareStatement(sql)) {
+                statement.setString(1, dessertName);
+                ResultSet resultSet = statement.executeQuery();
+
+                while (resultSet.next()) {
+                    orders.add(extractOrderFromResultSet(resultSet));
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return orders;
+    }
+
+
 
     private Order extractOrderFromResultSet(ResultSet resultSet) throws SQLException {
         Order order = new Order();

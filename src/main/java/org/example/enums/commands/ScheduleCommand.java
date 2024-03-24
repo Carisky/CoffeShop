@@ -16,6 +16,8 @@ public enum ScheduleCommand {
     CREATE("create", ()-> {
         new ScheduleDAO().create(ScheduleInput.create());
     }),
+    DELETE("delete",ScheduleInput::deleteSchedule),
+    DELETE_BETWEEN_DATES("delete between dates",ScheduleInput::deleteScheduleBetweenDates),
     UPDATE("update", () -> {
         new ScheduleDAO().update(Objects.requireNonNull(ScheduleInput.update()));
     });

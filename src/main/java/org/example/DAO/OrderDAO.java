@@ -162,6 +162,71 @@ public class OrderDAO implements ICRUD<Order> {
         return orders;
     }
 
+    public List<Order> getOrdersByDateRange(Date startDate, Date endDate) {
+        List<Order> orders = new ArrayList<>();
+
+        try {
+            String sql = "SELECT * FROM coffeeshop.orders WHERE DATE(order_date) BETWEEN ? AND ?";
+            try (PreparedStatement statement = connection.prepareStatement(sql)) {
+                statement.setDate(1, new java.sql.Date(startDate.getTime()));
+                statement.setDate(2, new java.sql.Date(endDate.getTime()));
+                ResultSet resultSet = statement.executeQuery();
+
+                while (resultSet.next()) {
+                    orders.add(extractOrderFromResultSet(resultSet));
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return orders;
+    }
+
+    public int getCountOfDessertOrdersByDate(Date date) {
+        int count = 0;
+
+        try {
+            String sql = "SELECT COUNT(*) AS dessert_count FROM coffeeshop.orders o " +
+                    "JOIN coffeeshop.menu m ON o.menu_id = m.id " +
+                    "WHERE m.type = 'dessert' AND DATE(o.order_date) = ?";
+            try (PreparedStatement statement = connection.prepareStatement(sql)) {
+                statement.setDate(1, new java.sql.Date(date.getTime()));
+                ResultSet resultSet = statement.executeQuery();
+
+                if (resultSet.next()) {
+                    count = resultSet.getInt("dessert_count");
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return count;
+    }
+
+    public int getCountOfDrinkOrdersByDate(Date date) {
+        int count = 0;
+
+        try {
+            String sql = "SELECT COUNT(*) AS drink_count FROM coffeeshop.orders o " +
+                    "JOIN coffeeshop.menu m ON o.menu_id = m.id " +
+                    "WHERE m.type = 'drink' AND DATE(o.order_date) = ?";
+            try (PreparedStatement statement = connection.prepareStatement(sql)) {
+                statement.setDate(1, new java.sql.Date(date.getTime()));
+                ResultSet resultSet = statement.executeQuery();
+
+                if (resultSet.next()) {
+                    count = resultSet.getInt("drink_count");
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return count;
+    }
+
 
 
     private Order extractOrderFromResultSet(ResultSet resultSet) throws SQLException {
